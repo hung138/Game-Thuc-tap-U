@@ -199,5 +199,6 @@ void GSPlay::Instantiate(Vector2 noiK) {
 		
 		});
 	cardDi = button;
+	//cardDi->SetRotation(Vector3(0, 0, 3.14f / 2));
 	m_player1.push_back(button);
 }
