@@ -70,7 +70,7 @@ void GSPlay::Init()
 	texture = ResourceManagers::GetInstance()->GetTexture("/0/bai.tga");
 	m_dek = std::make_shared<GameButton>(model, shader, texture);
 	m_dek->Set2DPosition((float)Globals::screenWidth / 2 - 80, (float)Globals::screenHeight / 2);
-	m_dek->SetSize(70, 100);
+	m_dek->SetSize(50, 70);
 	m_dek->SetOnClick([this]() {
 		cout << 5;
 		Instantiate(Vector2(m_dek->GetPosition().x, m_dek->GetPosition().y));
@@ -80,7 +80,7 @@ void GSPlay::Init()
 	texture = ResourceManagers::GetInstance()->GetTexture("/0/v3.tga");
 	m_card0 = std::make_shared<Sprite2D>(model, shader, texture);
 	m_card0->Set2DPosition((float)Globals::screenWidth / 2, (float)Globals::screenHeight / 2);
-	m_card0->SetSize(70, 100);
+	m_card0->SetSize(50, 70);
 
 	toiNoi = Vector2(vt0, Globals::screenHeight / 2 + 150);
 }
@@ -147,7 +147,7 @@ void GSPlay::Update(float deltaTime)
 			diToi = false;
 			cardDi->Set2DPosition(toiNoi);
 
-			toiNoi = Vector2(toiNoi.x + 50, toiNoi.y);
+			toiNoi = Vector2(toiNoi.x + 40, toiNoi.y);
 
 			cout << "Da di toi";
 		}
@@ -191,7 +191,7 @@ void GSPlay::Instantiate(Vector2 noiK) {
 
 	shared_ptr<GameButton>  button = make_shared<GameButton>(model, shader, texture);
 	button->Set2DPosition(noiK);
-	button->SetSize(70, 100);
+	button->SetSize(50, 70);
 
 	button->SetOnClick([this]() {
 		
