@@ -73,8 +73,10 @@ void GSPlay::Init()
 	m_dek->SetSize(50, 70);
 	m_dek->SetOnClick([this]() {
 		cout << 5;
-		Instantiate(Vector2(m_dek->GetPosition().x, m_dek->GetPosition().y));
-		diToi = true;
+		if (!diToi) {
+			Instantiate(Vector2(m_dek->GetPosition().x, m_dek->GetPosition().y));
+			diToi = true;
+		}
     });
 
 	texture = ResourceManagers::GetInstance()->GetTexture("/0/v3.tga");
