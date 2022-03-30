@@ -2,6 +2,7 @@
 #include "GameStates/GameStateMachine.h"
 #include "GameStates/GameStatebase.h"
 
+
 Application::Application()
 {
 }
@@ -40,8 +41,8 @@ void Application::Render()
 
 void Application::HandleKeyEvent(unsigned char key, bool bIsPresseded)
 {
-	if (GameStateMachine::GetInstance()->HasState())
-		GameStateMachine::GetInstance()->CurrentState()->HandleKeyEvents(key, bIsPresseded);
+	/*if (GameStateMachine::GetInstance()->HasState())
+		GameStateMachine::GetInstance()->CurrentState()->HandleKeyEvents(key, bIsPresseded);*/
 
 }
 
@@ -53,8 +54,8 @@ void Application::HandleTouchEvent(GLint x, GLint y, bool bIsPresseded)
 
 void Application::HandleMouseMoveEvent(GLint x, GLint y)
 {
-	if (GameStateMachine::GetInstance()->HasState())
-		GameStateMachine::GetInstance()->CurrentState()->HandleMouseMoveEvents(x, y);
+	/*if (GameStateMachine::GetInstance()->HasState())
+		GameStateMachine::GetInstance()->CurrentState()->HandleMouseMoveEvents(x, y);*/
 }
 
 void Application::Exit()
