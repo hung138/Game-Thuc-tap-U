@@ -1051,7 +1051,7 @@ void GSPlay::DichBai() {
 	auto shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
 	auto texture = ResourceManagers::GetInstance()->GetTexture(cardSpi[baiRut]);
 	if (toiPl > 1) {
-	//	texture = ResourceManagers::GetInstance()->GetTexture("/0/bai.tga");
+	    texture = ResourceManagers::GetInstance()->GetTexture("/0/bai.tga");
 	}
 
 	shared_ptr<GameButton>	m_nut = make_shared<GameButton>(model, shader, texture);
