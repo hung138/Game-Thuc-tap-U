@@ -118,7 +118,7 @@ void GSPlay::Init()
 		});
 	m_listButton.push_back(button);
 
-	texture = ResourceManagers::GetInstance()->GetTexture("btn_next.tga");
+	texture = ResourceManagers::GetInstance()->GetTexture("btn_restart.tga");
 	std::shared_ptr<GameButton>  button2 = std::make_shared<GameButton>(model, shader, texture);
 	button2->Set2DPosition(50, 50);
 	button2->SetSize(50, 50);
