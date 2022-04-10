@@ -27,9 +27,9 @@ string duoiFile = ".tga";
 float vt0 = Globals::screenWidth / 2 - 200;
 
 Vector2 noiPla[5] = { Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2),
-Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2 + 200),
+Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2 + 220),
 Vector2(Globals::screenWidth / 2 + 310, Globals::screenHeight / 2) ,
-Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2 - 200) ,
+Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2 - 220) ,
 Vector2(Globals::screenWidth / 2 - 310, Globals::screenHeight / 2) };
 
 Vector4 mauMe[5] = { Vector4(0,0,0,1),
@@ -114,7 +114,8 @@ void GSPlay::Init()
 	button->Set2DPosition(Globals::screenWidth - 50, 50);
 	button->SetSize(50, 50);
 	button->SetOnClick([this]() {
-		GameStateMachine::GetInstance()->PopState();
+		//GameStateMachine::GetInstance()->PopState();
+		exit(0);
 		});
 	m_listButton.push_back(button);
 
@@ -156,11 +157,11 @@ void GSPlay::Init()
 		}
 		else if (i == 1) {
 			htTen->SetRotation(Vector3(0, 0, 3.14 / 2));
-			htTen->Set2DPosition(Vector2(noiPla[i + 1].x + 50, noiPla[i + 1].y));
+			htTen->Set2DPosition(Vector2(noiPla[i + 1].x + 70, noiPla[i + 1].y));
 		}
 		else if (i == 3) {
 			htTen->SetRotation(Vector3(0, 0, -3.14 / 2));
-			htTen->Set2DPosition(Vector2(noiPla[i + 1].x + 50, noiPla[i + 1].y));
+			htTen->Set2DPosition(Vector2(noiPla[i + 1].x + 70, noiPla[i + 1].y));
 		}
 
 		m_ten.push_back(htTen);
@@ -170,27 +171,28 @@ void GSPlay::Init()
 	texture = ResourceManagers::GetInstance()->GetTexture("/0/card0.tga");
 	bai2 = make_shared<GameButton>(model, shader, texture);
 	bai2->Set2DPosition(0, 0);
-	bai2->SetSize(60, 90);
+	bai2->SetSize(70, 105);
 	bai2->SetRotation(Vector3(0, 0, 0));
 
 	// set deck
 	texture = ResourceManagers::GetInstance()->GetTexture("/0/bai.tga");
 	m_dek = std::make_shared<GameButton>(model, shader, texture);
-	m_dek->Set2DPosition((float)Globals::screenWidth / 2 - 80, (float)Globals::screenHeight / 2);
-	m_dek->SetSize(60, 90);
+	m_dek->Set2DPosition((float)Globals::screenWidth / 2 - 100, (float)Globals::screenHeight / 2);
+	m_dek->SetSize(70, 105);
 
 	texture = ResourceManagers::GetInstance()->GetTexture("/0/card0.tga");
 	m_card0 = std::make_shared<Sprite2D>(model, shader, texture);
 	m_card0->Set2DPosition((float)Globals::screenWidth / 2, (float)Globals::screenHeight / 2);
-	m_card0->SetSize(60, 90);
+	m_card0->SetSize(70, 105);
 
 	texture = ResourceManagers::GetInstance()->GetTexture("1red/den.tga");
 	m_den = std::make_shared<Sprite2D>(model, shader, texture);
-	m_den->Set2DPosition((float)Globals::screenWidth / 2 + 60, (float)Globals::screenHeight / 2);
+	m_den->Set2DPosition((float)Globals::screenWidth / 2 + 80, (float)Globals::screenHeight / 2);
 	m_den->SetSize(30, 30);
 
 	toiT = noiPla[1];
 
+	ResourceManagers::GetInstance()->PlaySound("UNO OST Music.mp3", true);
 	// deck
 	ResetBai();
 }
@@ -538,11 +540,11 @@ void GSPlay::Update(float deltaTime)
 void GSPlay::Draw()
 {
 	m_background->Draw();
+	rever->Draw();
 	//m_score->Draw();
 	m_dek->Draw();
 	m_card0->Draw();
 	m_den->Draw();
-	rever->Draw();
 	bai2->Draw();
 
 	for (auto it : m_listButton)
@@ -885,11 +887,11 @@ void GSPlay::DanhBai(int cho, int baiDanhRa, int soC, int thuMay) {
 		else if (cho == 2) {
 			for (auto it : card2) {
 				if (demm < namO) {
-					it->Set2DPosition(it->GetPosition().x, it->GetPosition().y - 15);
+					it->Set2DPosition(it->GetPosition().x, it->GetPosition().y - 8);
 				}
 				else
 				{
-					it->Set2DPosition(it->GetPosition().x, it->GetPosition().y + 15);
+					it->Set2DPosition(it->GetPosition().x, it->GetPosition().y + 8);
 				}
 				demm++;
 
@@ -901,11 +903,11 @@ void GSPlay::DanhBai(int cho, int baiDanhRa, int soC, int thuMay) {
 		else if (cho == 4) {
 			for (auto it : card4) {
 				if (demm < namO) {
-					it->Set2DPosition(it->GetPosition().x, it->GetPosition().y + 15);
+					it->Set2DPosition(it->GetPosition().x, it->GetPosition().y + 8);
 				}
 				else
 				{
-					it->Set2DPosition(it->GetPosition().x, it->GetPosition().y - 15);
+					it->Set2DPosition(it->GetPosition().x, it->GetPosition().y - 8);
 				}
 				demm++;
 
@@ -949,6 +951,7 @@ void GSPlay::DanhBai(int cho, int baiDanhRa, int soC, int thuMay) {
 
 	Instantiate(tuu, luot, 0, baiDanhRa, 0);
 	toiCh = true;
+	ResourceManagers::GetInstance()->PlaySound("draw.mp3");
 	//rever.GetComponent <AudioSource>().Play();
 }
 
@@ -991,12 +994,12 @@ void GSPlay::ChiaBai(int cho) {
 			}
 			else if (cho == 2) {
 				for (auto it : card2) {
-					it->Set2DPosition(it->GetPosition().x, it->GetPosition().y + 15);
+					it->Set2DPosition(it->GetPosition().x, it->GetPosition().y + 8);
 				}
 			}
 			else if (cho == 4) {
 				for (auto it : card4) {
-					it->Set2DPosition(it->GetPosition().x, it->GetPosition().y - 15);
+					it->Set2DPosition(it->GetPosition().x, it->GetPosition().y - 8);
 				}
 			}
 
@@ -1009,11 +1012,11 @@ void GSPlay::ChiaBai(int cho) {
 				toiT = vtM2;
 			}
 			else if (cho == 2) {
-				Vector2 vtM2(card2.back()->GetPosition().x, card2.back()->GetPosition().y - 30);
+				Vector2 vtM2(card2.back()->GetPosition().x, card2.back()->GetPosition().y - 16);
 				toiT = vtM2;
 			}
 			else if (cho == 4) {
-				Vector2 vtM2(card4.back()->GetPosition().x, card4.back()->GetPosition().y + 30);
+				Vector2 vtM2(card4.back()->GetPosition().x, card4.back()->GetPosition().y + 16);
 				toiT = vtM2;
 			}
 		}
@@ -1044,6 +1047,8 @@ void GSPlay::ChiaBai(int cho) {
 	}
 	toiPl = cho;
 	toiCh = true;
+
+	ResourceManagers::GetInstance()->PlaySound("draw.mp3");
 }
 
 void GSPlay::DichBai() {
@@ -1051,14 +1056,14 @@ void GSPlay::DichBai() {
 	auto shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
 	auto texture = ResourceManagers::GetInstance()->GetTexture(cardSpi[baiRut]);
 	if (toiPl > 1) {
-	    texture = ResourceManagers::GetInstance()->GetTexture("/0/bai.tga");
+		texture = ResourceManagers::GetInstance()->GetTexture("/0/bai.tga");
 	}
 
 	shared_ptr<GameButton>	m_nut = make_shared<GameButton>(model, shader, texture);
 
 	m_nut->SetRotation(Vector3(0, 0, toiR));
 	m_nut->Set2DPosition(toiT);
-	m_nut->SetSize(60, 90);
+	m_nut->SetSize(70, 105);
 
 	if (toiPl == 1) {
 		m_nut->SetOnClick([this]() {
@@ -1293,6 +1298,8 @@ void GSPlay::ShowCardDB(int cho) {
 	else if (cho == 15) {  // +4
 		AnShowCard(cho);
 	}
+
+	ResourceManagers::GetInstance()->PlaySound("btt.mp3");
 }
 
 void GSPlay::AnShowCard(int cho) {
