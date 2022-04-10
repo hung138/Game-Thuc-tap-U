@@ -171,19 +171,19 @@ void GSPlay::Init()
 	texture = ResourceManagers::GetInstance()->GetTexture("/0/card0.tga");
 	bai2 = make_shared<GameButton>(model, shader, texture);
 	bai2->Set2DPosition(0, 0);
-	bai2->SetSize(70, 105);
+	bai2->SetSize(60, 90);
 	bai2->SetRotation(Vector3(0, 0, 0));
 
 	// set deck
 	texture = ResourceManagers::GetInstance()->GetTexture("/0/bai.tga");
 	m_dek = std::make_shared<GameButton>(model, shader, texture);
 	m_dek->Set2DPosition((float)Globals::screenWidth / 2 - 100, (float)Globals::screenHeight / 2);
-	m_dek->SetSize(70, 105);
+	m_dek->SetSize(60, 90);
 
 	texture = ResourceManagers::GetInstance()->GetTexture("/0/card0.tga");
 	m_card0 = std::make_shared<Sprite2D>(model, shader, texture);
 	m_card0->Set2DPosition((float)Globals::screenWidth / 2, (float)Globals::screenHeight / 2);
-	m_card0->SetSize(70, 105);
+	m_card0->SetSize(60, 90);
 
 	texture = ResourceManagers::GetInstance()->GetTexture("1red/den.tga");
 	m_den = std::make_shared<Sprite2D>(model, shader, texture);
@@ -871,11 +871,11 @@ void GSPlay::DanhBai(int cho, int baiDanhRa, int soC, int thuMay) {
 		else if (cho == 3) {
 			for (auto it : card3) {
 				if (demm < namO) {
-					it->Set2DPosition(it->GetPosition().x - 28, it->GetPosition().y);
+					it->Set2DPosition(it->GetPosition().x - 20, it->GetPosition().y);
 				}
 				else
 				{
-					it->Set2DPosition(it->GetPosition().x + 28, it->GetPosition().y);
+					it->Set2DPosition(it->GetPosition().x + 20, it->GetPosition().y);
 				}
 				demm++;
 
@@ -989,7 +989,7 @@ void GSPlay::ChiaBai(int cho) {
 			}
 			else if (cho == 3) {
 				for (auto it : card3) {
-					it->Set2DPosition(it->GetPosition().x + 28, it->GetPosition().y);
+					it->Set2DPosition(it->GetPosition().x + 20, it->GetPosition().y);
 				}
 			}
 			else if (cho == 2) {
@@ -1008,7 +1008,7 @@ void GSPlay::ChiaBai(int cho) {
 				toiT = vtM2;
 			}
 			else if (cho == 3) {
-				Vector2 vtM2(card3.back()->GetPosition().x - 56, card3.back()->GetPosition().y);
+				Vector2 vtM2(card3.back()->GetPosition().x - 40, card3.back()->GetPosition().y);
 				toiT = vtM2;
 			}
 			else if (cho == 2) {
@@ -1063,7 +1063,7 @@ void GSPlay::DichBai() {
 
 	m_nut->SetRotation(Vector3(0, 0, toiR));
 	m_nut->Set2DPosition(toiT);
-	m_nut->SetSize(70, 105);
+	m_nut->SetSize(60, 90);
 
 	if (toiPl == 1) {
 		m_nut->SetOnClick([this]() {
