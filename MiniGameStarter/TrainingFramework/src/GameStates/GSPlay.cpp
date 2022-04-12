@@ -1100,7 +1100,7 @@ void GSPlay::ResetBai() {
 	auto texture1 = ResourceManagers::GetInstance()->GetTexture("/0/reverse1.tga");
 
 	rever = make_shared<Sprite2D>(model, shader, texture0);
-	rever->SetSize(600, 300);
+	rever->SetSize(500, 400);
 	rever->Set2DPosition(Globals::screenWidth / 2, Globals::screenHeight / 2);
 
 	if (huong < 5) {
